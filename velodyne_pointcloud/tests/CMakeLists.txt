@@ -8,6 +8,7 @@ ament_target_dependencies(test_row_step
   sensor_msgs
   tf2_ros
   velodyne_msgs
+  ament_index_cpp
 )
 
 ament_add_gtest(test_calibration
@@ -23,6 +24,7 @@ ament_target_dependencies(test_calibration
 )
 
 target_link_libraries(test_calibration
+ament_index_cpp::ament_index_cpp
   ${YAML_CPP_LIBRARIES}
 )
 
