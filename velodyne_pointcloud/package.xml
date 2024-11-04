@@ -31,7 +31,8 @@
   <depend>dynamic_reconfigure</depend>
   <depend>diagnostic_updater</depend>
   <depend>eigen</depend>
-
+  <build_depend>ament_index_cpp</build_depend>
+  <exec_depend>ament_index_cpp</exec_depend>
   <exec_depend>velodyne_laserscan</exec_depend>
 
   <test_depend>rosunit</test_depend>
