@@ -58,6 +58,7 @@ ament_target_dependencies(transform
 target_link_libraries(transform
   velodyne_cloud_types
   velodyne_rawdata
+  ament_index_cpp
   ${YAML_CPP_LIBRARIES})
 install(TARGETS transform
   ARCHIVE DESTINATION lib
