@@ -22,7 +22,6 @@ find_package(rclcpp_components REQUIRED)
 find_package(sensor_msgs REQUIRED)
 find_package(tf2 REQUIRED)
 find_package(tf2_ros REQUIRED)
-find_package(ament_index_cpp REQUIRED)
 find_package(velodyne_msgs REQUIRED)
 
 # Resolve system dependency on yaml-cpp, which apparently does not
@@ -57,7 +56,6 @@ ament_target_dependencies(transform
 )
 
 target_link_libraries(transform
-ament_index_cpp
   velodyne_cloud_types
   velodyne_rawdata
   ${YAML_CPP_LIBRARIES})
