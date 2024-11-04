@@ -8,6 +8,7 @@ ament_target_dependencies(test_row_step
   sensor_msgs
   tf2_ros
   velodyne_msgs
+  ament_index_cpp
 )
 
 ament_add_gtest(test_calibration
