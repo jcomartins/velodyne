@@ -55,11 +55,13 @@ OrganizedCloudXYZIRT::OrganizedCloudXYZIRT(
     "x", 1, sensor_msgs::msg::PointField::FLOAT32,
     "y", 1, sensor_msgs::msg::PointField::FLOAT32,
     "z", 1, sensor_msgs::msg::PointField::FLOAT32,
-    "intensity", 1, sensor_msgs::msg::PointField::FLOAT32,
-    "ring", 1, sensor_msgs::msg::PointField::UINT16,
-    "time", 1, sensor_msgs::msg::PointField::FLOAT32),
+    "intensity", 1, sensor_msgs::msg::PointField::UINT8,
+    "return_type", 1, sensor_msgs::msg::PointField::UINT8, 
+    "channel", 1, sensor_msgs::msg::PointField::UINT16),
+    //"time", 1, sensor_msgs::msg::PointField::FLOAT32
+    
   iter_x_(cloud, "x"), iter_y_(cloud, "y"), iter_z_(cloud, "z"),
-  iter_intensity_(cloud, "intensity"), iter_ring_(cloud, "ring"), iter_time_(cloud, "time")
+  iter_intensity_(cloud, "intensity"), iter_ring_(cloud, "channel"), iter_return_type_(cloud, "return_type")
 {
 }
 
@@ -70,7 +72,7 @@ void OrganizedCloudXYZIRT::newLine()
   iter_z_ = iter_z_ + config_.init_width;
   iter_ring_ = iter_ring_ + config_.init_width;
   iter_intensity_ = iter_intensity_ + config_.init_width;
-  iter_time_ = iter_time_ + config_.init_width;
+  iter_return_type_ = iter_return_type_ + config_.init_width;
   ++cloud.height;
 }
 
@@ -80,9 +82,9 @@ void OrganizedCloudXYZIRT::setup(const velodyne_msgs::msg::VelodyneScan::ConstSh
   iter_x_ = sensor_msgs::PointCloud2Iterator<float>(cloud, "x");
   iter_y_ = sensor_msgs::PointCloud2Iterator<float>(cloud, "y");
   iter_z_ = sensor_msgs::PointCloud2Iterator<float>(cloud, "z");
-  iter_intensity_ = sensor_msgs::PointCloud2Iterator<float>(cloud, "intensity");
-  iter_ring_ = sensor_msgs::PointCloud2Iterator<uint16_t>(cloud, "ring");
-  iter_time_ = sensor_msgs::PointCloud2Iterator<float>(cloud, "time");
+  iter_intensity_ = sensor_msgs::PointCloud2Iterator<uint8_t>(cloud, "intensity");
+  iter_ring_ = sensor_msgs::PointCloud2Iterator<uint16_t>(cloud, "channel");
+  iter_return_type_ = sensor_msgs::PointCloud2Iterator<uint8_t>(cloud, "return_type");
 }
 
 void OrganizedCloudXYZIRT::addPoint(
@@ -103,14 +105,14 @@ void OrganizedCloudXYZIRT::addPoint(
     *(iter_z_ + ring) = z;
     *(iter_intensity_ + ring) = intensity;
     *(iter_ring_ + ring) = ring;
-    *(iter_time_ + ring) = time;
+    *(iter_return_type_ + ring) = 0;
   } else {
     *(iter_x_ + ring) = nanf("");
     *(iter_y_ + ring) = nanf("");
     *(iter_z_ + ring) = nanf("");
     *(iter_intensity_ + ring) = ::nanf("");
     *(iter_ring_ + ring) = ring;
-    *(iter_time_ + ring) = time;
+    *(iter_return_type_ + ring) = 0;
   }
 }
 
