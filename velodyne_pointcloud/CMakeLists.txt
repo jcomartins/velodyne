@@ -22,6 +22,7 @@ find_package(rclcpp_components REQUIRED)
 find_package(sensor_msgs REQUIRED)
 find_package(tf2 REQUIRED)
 find_package(tf2_ros REQUIRED)
+find_package(ament_index_cpp REQUIRED)
 find_package(velodyne_msgs REQUIRED)
 
 # Resolve system dependency on yaml-cpp, which apparently does not
@@ -42,7 +43,7 @@ if(NOT ${YAML_CPP_VERSION} VERSION_LESS "0.5")
 endif()
 
 include_directories(include ${PCL_COMMON_INCLUDE_DIRS})
-
+target_link_libraries(velodyne_pointcloud ament_index_cpp)
 add_subdirectory(src/lib)
 
 add_library(transform SHARED
