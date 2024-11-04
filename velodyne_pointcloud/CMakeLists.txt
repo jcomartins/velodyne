@@ -29,6 +29,7 @@ find_package(catkin REQUIRED COMPONENTS
 
 find_package(Boost COMPONENTS signals)
 find_package(Eigen3 REQUIRED)
+find_package(ament_index_cpp REQUIRED)
 # Resolve system dependency on yaml-cpp, which apparently does not
 # provide a CMake find_package() module.
 find_package(PkgConfig REQUIRED)
@@ -41,7 +42,7 @@ find_library(YAML_CPP_LIBRARY
              PATHS ${YAML_CPP_LIBRARY_DIRS})
 
 link_directories(${YAML_CPP_LIBRARY_DIRS})
-
+target_link_libraries(velodyne_pointcloud ament_index_cpp)
 generate_dynamic_reconfigure_options(
   cfg/TransformNode.cfg
 )
