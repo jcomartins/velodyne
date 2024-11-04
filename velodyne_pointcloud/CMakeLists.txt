@@ -55,11 +55,12 @@ ament_target_dependencies(transform
   tf2
   tf2_ros
 )
+
 target_link_libraries(transform
   velodyne_cloud_types
   velodyne_rawdata
-  ament_index_cpp
   ${YAML_CPP_LIBRARIES})
+target_link_libraries(velodyne_pointcloud ament_index_cpp)
 install(TARGETS transform
   ARCHIVE DESTINATION lib
   LIBRARY DESTINATION lib
