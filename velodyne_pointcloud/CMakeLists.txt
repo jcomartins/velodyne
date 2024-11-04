@@ -43,7 +43,6 @@ if(NOT ${YAML_CPP_VERSION} VERSION_LESS "0.5")
 endif()
 
 include_directories(include ${PCL_COMMON_INCLUDE_DIRS})
-target_link_libraries(velodyne_pointcloud ament_index_cpp)
 add_subdirectory(src/lib)
 
 add_library(transform SHARED
