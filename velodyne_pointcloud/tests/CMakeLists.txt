@@ -16,6 +16,7 @@ ament_add_gtest(test_calibration
 )
 
 target_link_libraries(test_calibration
+ament_index_cpp::ament_index_cpp
   velodyne_rawdata
 )
 
